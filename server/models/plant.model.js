@@ -40,3 +40,9 @@ const plantsSchema = new Schema({
     }, 
 
 })
+
+
+
+const Plant = mongoose.model('Plant', plantsSchema); 
+
+module.exports = Plant; 
