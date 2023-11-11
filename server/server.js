@@ -13,12 +13,20 @@ app.use(cors());
 app.use(express.json()); 
 
 // SETUP MONGOOSE
-const uri = process.env.ATALAS_URI; 
+const uri = process.env.ATLAS_URI; 
 mongoose.connect(uri, { useNewUrlParser: true }); 
 const connection = mongoose.connection; 
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully"); 
 })
+
+// ROUTERS
+const plantsRouter = require('./routes/plants'); 
+const usersRouter = require('./routes/users'); 
+
+app.use('/plants', plantsRouter); 
+app.use('/users', usersRouter); 
+
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`); 
